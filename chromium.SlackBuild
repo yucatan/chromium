@@ -5,6 +5,9 @@
 # This is script was inspired on the one used by Arch:
 # (http://repos.archlinux.org/wsvn/packages/chromium/trunk/PKGBUILD)
 #
+# A special thanks to Niels Horn who helped me fixing some errors on
+# the script and for testing it.
+#
 # Copyright 2010  Yucatan "Kenjiro" Costa, Alegrete, RS, Brasil
 # All rights reserved.
 #
