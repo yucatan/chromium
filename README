@@ -1,0 +1,18 @@
+Google Chromium is a browser that combines a minimal design with sophisticated
+technology to make the web faster, safer, and easier.
+
+This version, compiled from source, solves the crashes which happen when
+Slackware users try to upload JPEG files. The problem happens with other
+Chrome/Chromium packages, which are in fact DEB/RPM packages repacked as
+Slackware packages.
+
+Dependencies: GConf, gnome-keyring, libevent, libtasn1, Orbit2, yasm 
+
+The above dependencies have to be compiled in this order:
+
+1-ORBit2
+2-GConf
+3-libtasn1
+4- gnome-keyring
+
+*- libevent and yasm can be compiled first, last or between those, no problem.
