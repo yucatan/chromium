@@ -78,7 +78,7 @@ find . \
 # Configure it before compiling
 
 #
-# Change "-Dproprietary_codecs" to "1" if you want to use proprietary codecs
+# Change "-Dproprietary_codecs" to "0" if you don't want to use proprietary codecs
 #
 
 build/gyp_chromium -f make build/all.gyp --depth=. \
@@ -88,7 +88,7 @@ build/gyp_chromium -f make build/all.gyp --depth=. \
  -Dlinux_sandbox_path=/usr/lib${LIBDIRSUFFIX}/chromium/chromium-sandbox \
  -Dlinux_strip_binary=1 \
  -Dffmpeg_branding=Chrome \
- -Dproprietary_codecs=0 \
+ -Dproprietary_codecs=1 \
  -Duse_system_libjpeg=1 \
  -Duse_system_libxslt=0 \
  -Duse_system_libxml=0 \
