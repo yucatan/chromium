@@ -31,7 +31,8 @@
 PRGNAM=chromium
 VERSION=${VERSION:-7.0.544.0}
 BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}
+TAG=${TAG:-_ken}
+NUMJOBS="-j${NUMJOBS:-1}"
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -104,7 +105,7 @@ build/gyp_chromium -f make build/all.gyp --depth=. \
 
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
-make chrome chrome_sandbox BUILDTYPE=Release || exit 1
+make $NUMJOBS chrome chrome_sandbox BUILDTYPE=Release || exit 1
 
 # Creating the package
 cd out/Release/
