@@ -117,6 +117,7 @@ cd out/Release/
   install -m 0644 -D resources.pak $PKG/usr/lib${LIBDIRSUFFIX}/chromium
   install -m 0755 -D libffmpegsumo.so $PKG/usr/lib${LIBDIRSUFFIX}/chromium
   cp -a locales/ $PKG/usr/lib${LIBDIRSUFFIX}/chromium
+  cp -a resources/ $PKG/usr/lib${LIBDIRSUFFIX}/chromium
   find $PKG -name '*.d' -type f -delete
 
   mkdir -p $PKG/usr/man/man1
