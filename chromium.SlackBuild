@@ -29,7 +29,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=chromium
-VERSION=${VERSION:-8.0.558.0}
+VERSION=${VERSION:-9.0.563.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -104,7 +104,7 @@ build/gyp_chromium -f make build/all.gyp --depth=. \
 # Compiling...
 
 CFLAGS="$SLKCFLAGS" \
-CXXFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS -fno-ipa-cp" \
 make chrome chrome_sandbox BUILDTYPE=Release || exit 1
 
 # Creating the package
