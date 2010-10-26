@@ -102,7 +102,10 @@ build/gyp_chromium -f make build/all.gyp --depth=. \
  -Duse_system_ssl=0
 
 # Compiling...
-
+# ATTENTION ==> the "-fno-ipa-cp" flag is only needed if you intend to build chromium
+# on slackware(64)-current (or if you have gcc-4.5.x installed. On slackware(64)-13.1
+# it is not needed
+#
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS -fno-ipa-cp" \
 make chrome chrome_sandbox BUILDTYPE=Release || exit 1
