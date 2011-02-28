@@ -101,10 +101,6 @@ build/gyp_chromium -f make build/all.gyp --depth=. \
  -Duse_system_yasm=1 \
  -Duse_system_libevent=1 \
  -Ddisable_sse2=${NO_SSE2:-0} \
-<<<<<<< HEAD
- -Duse_system_webgl=0 \
-=======
->>>>>>> 6b33ad63a4622dc510c00955af3c618b165955ab
  -Duse_system_ssl=0
 
 # Compiling...
