@@ -1,0 +1,6 @@
+Google Chromium is a browser that combines a minimal design with sophisticated
+technology to make the web faster, safer, and easier.
+
+Note-1: Some processors don't have the SSE2 flag (check it with "cat /proc/cpuinfo | grep -i sse2"). In this case you should disable sse2 when compiling chromium. Do this by changing "-Ddisable_sse2=${NO_SSE2:-0}" to -Ddisable_sse2=${NO_SSE2:-1}
+
+Dependencies: yasm, libevent
