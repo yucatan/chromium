@@ -34,7 +34,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=chromium
-VERSION=${VERSION:-10.0.648.133}
+VERSION=${VERSION:-12.0.702.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_ken}
 
@@ -83,7 +83,7 @@ find . \
 
 # Let's try this patch from Gentoo:
 # http://code.google.com/p/chromium/issues/detail?id=70537
-patch -p1 < $CWD/chromium-webkit-version.patch
+##patch -p1 < $CWD/chromium-webkit-version.patch
  
 # Configure it before compiling
 
@@ -106,8 +106,8 @@ build/gyp_chromium --depth=. \
  -Dlinux_strip_binary=1 \
  -Dproprietary_codecs=1 \
  -Duse_system_libjpeg=1 \
- -Duse_system_libxslt=0 \
- -Duse_system_libxml=0 \
+ -Duse_system_libxslt=1 \
+ -Duse_system_libxml=1 \
  -Duse_system_bzip2=1 \
  -Duse_system_zlib=1 \
  -Duse_system_libpng=1 \
