@@ -1,6 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
-Exec=/usr/bin/chrome --enable-plugins %U
+Exec=/usr/bin/chrome %U
 Icon=/usr/share/pixmaps/chromium.png
 Type=Application
 Categories=Application;Network;
