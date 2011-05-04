@@ -34,7 +34,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=chromium
-VERSION=${VERSION:-12.0.739.0}
+VERSION=${VERSION:-13.0.754.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_ken}
 
@@ -102,7 +102,7 @@ build/gyp_chromium --depth=. \
  -Dwerror=0 \
  -Dno_strict_aliasing=1 \
  -Dwerror= \
- -Dlinux_sandbox_path=/usr/lib${LIBDIRSUFFIX}/chromium/chrome-sandbox \
+ -Dlinux_sandbox_path=/usr/lib${LIBDIRSUFFIX}/chromium/chrome_sandbox \
  -Dlinux_strip_binary=1 \
  -Dproprietary_codecs=1 \
  -Duse_system_libjpeg=1 \
