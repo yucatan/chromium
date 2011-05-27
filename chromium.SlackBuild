@@ -34,7 +34,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=chromium
-VERSION=${VERSION:-13.0.749.0}
+VERSION=${VERSION:-13.0.770.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_ken}
 
@@ -116,6 +116,7 @@ build/gyp_chromium --depth=. \
  -Ddisable_sse2=${NO_SSE2:-0} \
  -Dffmpeg_branding=Chrome \
  -Duse_system_ffmpeg=0 \
+ -Ddisable_nacl=1 \
  -Duse_system_ssl=0
 
 
