@@ -11,7 +11,8 @@
 # A very special thanks to Gino Bombino (ginolovesyou AT gmail DOT com), who
 # contributed with the parameters to disable the need for gnome dependencies 
 # and PAM, allowing the script to be cleaner and more elegant (no need for a
-# a patch to disable PAM).
+# a patch to disable PAM). And another special thanks to dive who handed me
+# the nacl.patch, fixing another compile problem.
 #
 # Copyright 2010  Yucatan "Kenjiro" Costa, Alegrete, RS, Brasil
 # All rights reserved.
