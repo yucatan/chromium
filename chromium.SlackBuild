@@ -35,7 +35,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=chromium
-VERSION=${VERSION:-16.0.887.0}
+VERSION=${VERSION:-17.0.914.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_ken}
 
@@ -122,11 +122,10 @@ build/gyp_chromium --depth=. \
 
 
 # Compiling...
-# ATTENTION ==> the "-fno-ipa-cp" flag is only needed if you intend to build chromium
-# on slackware(64)-current (or if you have gcc-4.5.x installed. On slackware(64)-13.1
-# it is not needed
-#
+
+# Let's try this change on CXXFLAGS dive told me about. It should solve the dbus problem when building.
 ###CXXFLAGS="$SLKCFLAGS -fno-ipa-cp" \
+
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS -I/usr/include/dbus-1.0 -I/usr/lib$LIBDIRSUFFIX/dbus-1.0/include" \
 make chrome chrome_sandbox BUILDTYPE=Release || exit 1
