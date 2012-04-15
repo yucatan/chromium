@@ -35,17 +35,18 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=chromium
-VERSION=${VERSION:-19.0.1056.1}
+VERSION=${VERSION:-20.0.1101.0}
 BUILD=${BUILD:-1}
-TAG=${TAG:-_ken}
-
+TAG=${TAG:-_SBo}
+NUMCPU=$(grep -c processor /proc/cpuinfo)
+NUMJOBS=" -j$(($NUMCPU+1)) "
 
 if [ -z "$ARCH" ]; then
-	case "$( uname -m )" in
-    		i?86) ARCH=i486 ;;
-    		arm*) ARCH=arm ;;
-       		*) ARCH=$( uname -m ) ;;
-  	esac
+  case "$( uname -m )" in
+    i?86) ARCH=i486 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
 fi
 
 CWD=$(pwd)
@@ -54,17 +55,17 @@ PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
 if [ "$ARCH" = "i486" ]; then
-	SLKCFLAGS="-O2 -march=i486 -mtune=i686"
-	LIBDIRSUFFIX=""
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+  LIBDIRSUFFIX=""
 elif [ "$ARCH" = "i686" ]; then
-	SLKCFLAGS="-O2 -march=i686 -mtune=i686"
-	LIBDIRSUFFIX=""
+  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
+  LIBDIRSUFFIX=""
 elif [ "$ARCH" = "x86_64" ]; then
-	SLKCFLAGS="-O2 -fPIC"
-	LIBDIRSUFFIX="64"
+  SLKCFLAGS="-O2 -fPIC"
+  LIBDIRSUFFIX="64"
 else
-	SLKCFLAGS="-O2"
-	LIBDIRSUFFIX=""
+  SLKCFLAGS="-O2"
+  LIBDIRSUFFIX=""
 fi
 
 set -e # Exit on most errors
@@ -82,15 +83,13 @@ find . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
 
-# Let's try this nacl patch (thanks to dive):
+# Let's try this nacl patch (thanks to dive)
 patch -p1 < $CWD/nacl.patch
 
-# Configure it before compiling
+# Remove SEC_OID_PKCS1_SHA224_WITH_RSA_ENCRYPTION as long as there's no new mozilla-nss buildscript available (3.12.7)
+patch -p1 < $CWD/ssl3ecc.c.patch
 
-#
 # Change "-Dproprietary_codecs" to "0" if you don't want to use proprietary codecs
-#
-
 build/gyp_chromium --depth=. \
  -Dgcc_version=45 \
  -Duse_gconf=0 \
@@ -120,15 +119,10 @@ build/gyp_chromium --depth=. \
  -Duse_kerberos=0 \
  -Duse_system_ssl=0
 
-
 # Compiling...
-
-# Let's try this change on CXXFLAGS dive told me about. It should solve the dbus problem when building.
-###CXXFLAGS="$SLKCFLAGS -fno-ipa-cp" \
-
 CFLAGS="$SLKCFLAGS" \
-CXXFLAGS="$SLKCFLAGS -I/usr/include/dbus-1.0 -I/usr/lib$LIBDIRSUFFIX/dbus-1.0/include" \
-make chrome chrome_sandbox BUILDTYPE=Release || exit 1
+CXXFLAGS="$SLKCFLAGS -fno-ipa-cp" \
+make $NUMJOBS chrome chrome_sandbox BUILDTYPE=Release || exit 1
 
 # Creating the package
 cd out/Release/
