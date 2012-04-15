@@ -38,7 +38,7 @@ PRGNAM=chromium
 VERSION=${VERSION:-20.0.1101.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
-NUMCPU=$(grep -c processor /proc/cpuinfo)
+NUMCPU=$(grep -ci processor /proc/cpuinfo)
 NUMJOBS=" -j$(($NUMCPU+1)) "
 
 if [ -z "$ARCH" ]; then
